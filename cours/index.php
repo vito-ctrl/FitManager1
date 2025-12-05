@@ -8,7 +8,6 @@
     $stmt = $conn->query($sqlselectcourses);
     $cours = $stmt->fetch_all(MYSQLI_ASSOC);
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -50,14 +49,29 @@
             color: #0af;
         }
 
-        .addButton{
-            display: flex;
-            justify-content: center;
+        /* Add Button Centered */
+        .addButton {
+            display: block;
+            width: 120px;
+            margin: 20px auto;
             background: #0af;
-            width: 90px;
             padding: 10px;
             border-radius: 4px;
+            text-align: center;
             cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .addButton a {
+            color: #000;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 16px;
+            display: block;
+        }
+
+        .addButton:hover {
+            background: #0095d9;
         }
 
         table {
@@ -81,19 +95,27 @@
         tr:nth-child(even) {
             background: #1a1a1a;
         }
-        
-        .delete-btn{
+
+        .delete-btn {
             background: red;
             border-radius: 4px;
             cursor: pointer;
             border: none;
+            padding: 6px 12px;
+            color: #fff;
         }
 
-        .edit-btn{
+        .edit-btn {
             background: #0af;
             border-radius: 4px;
             cursor: pointer;
             border: none;
+            padding: 6px 12px;
+            color: #000;
+        }
+
+        .edit-btn:hover {
+            background: #0095d9;
         }
     </style>
 </head>
@@ -109,7 +131,11 @@
     </header>
 
     <h1 style="text-align:center;">Courses</h1>
-    <button class='addButton'><a href="./create.php">add</a></button> 
+
+    <div class="addButton">
+        <a href="./create.php">Add</a>
+    </div>
+
     <table>
         <thead>
             <tr>
@@ -120,12 +146,11 @@
                 <th>Time</th>
                 <th>Duration</th>
                 <th>Max Participants</th>
-                <th>delete / edit</th>
+                <th>Delete / Edit</th>
             </tr>
         </thead>
 
         <tbody>
-
             <?php foreach ($cours as $course): ?>
             <tr>
                 <td><?= $course['id'] ?></td>
@@ -136,8 +161,8 @@
                 <td><?= $course['duration'] ?></td>
                 <td><?= $course['max_participants'] ?></td>
                 <td>
-                    <button class='delete-btn'>delete</button> 
-                    <button class='edit-btn'>edit</button>
+                    <button class="delete-btn">delete</button>
+                    <button class="edit-btn">edit</button>
                 </td>
             </tr>
             <?php endforeach; ?>
