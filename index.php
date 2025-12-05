@@ -1,8 +1,9 @@
 <?php
     require_once './config/db.php';
-    require_once './dashboard.php';
+    require_once './cours/index.php';
+    // require_once './dashboard.php';
 ?>
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -16,4 +17,4 @@
         <button type="submit">Send</button>
     </form>
 </body>
-</html>
+</html> -->

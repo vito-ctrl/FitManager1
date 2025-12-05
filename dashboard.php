@@ -1,6 +1,5 @@
 <?php
 require "./config/db.php";
-// require "./cours/"
 
 $sqlselectcourses = "SELECT * FROM courses";
 $stmt = $conn->query($sqlselectcourses);
