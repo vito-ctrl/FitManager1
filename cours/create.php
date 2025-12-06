@@ -1,9 +1,30 @@
 <?php
-ini_set('display_errors', 1);
+    ini_set('display_errors', 1);
     ini_set('display_startup_errors', 1);
     error_reporting(E_ALL);
-    // require '../config/db.php';
-    
+    require '../config/db.php';
+
+if (isset($_POST['action']) && $_POST['action'] === 'add') {
+        $name = $_POST['name'];
+        $category = $_POST['category'];
+        $date = $_POST['date'];
+        $time = $_POST['time'];
+        $duration = $_POST['duration'];
+        $max_p = $_POST['max_participants'];
+        
+        
+        $sql = "INSERT INTO courses (nom ,category, course_date, course_time, duration, max_participants)
+                VALUES ('$name', '$category', '$date', '$time', '$duration', '$max_p')";
+        
+        $stmt = $conn->query($sql);
+        if($stmt === TRUE) echo "nice:)";
+        echo "name". $name;
+        echo "cate" .$category; 
+        echo "date". $date;
+        echo "time". $time;
+        echo "duration". $duration;
+        echo "max". $max_p;
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -61,6 +82,22 @@ ini_set('display_errors', 1);
             text-align: center;
             color: #0af;
             margin-bottom: 20px;
+        }
+        select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 18px;
+            background: #000;
+            border: 1px solid #333;
+            border-radius: 6px;
+            color: #fff;
+            font-size: 15px;
+        }
+
+        select:focus {
+            outline: none;
+            border-color: #0af;
+            box-shadow: 0 0 5px #0af;
         }
 
         label {
@@ -120,13 +157,21 @@ ini_set('display_errors', 1);
 <div class="form-container">
     <h1>Add Course</h1>
 
-    <form action="add_course.php" method="POST">
+    <form action="" method="POST">
+        <input type="hidden" name="action" value="add">
 
         <label for="name">Name</label>
         <input type="text" id="name" name="name" required placeholder="Course name">
 
         <label for="category">Category</label>
-        <input type="text" id="category" name="category" required placeholder="Category">
+        <select id="category" name="category" required>
+            <option value="">-- Select Category --</option>
+            <option value="Yoga">Yoga</option>
+            <option value="Musculation">Musculation</option>
+            <option value="Cardio">Cardio</option>
+            <option value="CrossFit">CrossFit</option>
+            <option value="Pilates">Pilates</option>
+        </select>
 
         <label for="date">Date</label>
         <input type="date" id="date" name="date" required>
@@ -141,7 +186,6 @@ ini_set('display_errors', 1);
         <input type="number" id="max_participants" name="max_participants" min="1" required placeholder="Maximum number">
 
         <button type="submit">Add Course</button>
-
     </form>
 </div>
 

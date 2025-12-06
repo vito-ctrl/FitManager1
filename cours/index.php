@@ -3,6 +3,7 @@
     ini_set('display_startup_errors', 1);
     error_reporting(E_ALL);
     require '../config/db.php';
+    // echo "hi"
     
     $sqlselectcourses = "SELECT * FROM courses";
     $stmt = $conn->query($sqlselectcourses);
@@ -133,7 +134,7 @@
     <h1 style="text-align:center;">Courses</h1>
 
     <div class="addButton">
-        <a href="./create.php">Add</a>
+        <a href="create.php">Add</a>
     </div>
 
     <table>

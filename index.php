@@ -1,7 +1,8 @@
 <?php
     require_once './config/db.php';
-    require_once './cours/index.php';
+    // require_once './cours/index.php';
     // require_once './dashboard.php';
+    require './cours/create.php';
 ?>
 <!-- <!DOCTYPE html>
 <html lang="en">

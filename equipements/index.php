@@ -15,7 +15,7 @@
     <title>FitManager</title>
 
     <style>
-        body {
+         body {
             background: #000;
             color: #fff;
             font-family: Arial, sans-serif;
@@ -44,18 +44,33 @@
             font-size: 18px;
         }
 
-        .addButton{
-            display: flex;
-            justify-content: center;
-            background: #0af;
-            width: 90px;
-            padding: 10px;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-
         nav a:hover {
             color: #0af;
+        }
+
+        /* Add Button Centered */
+        .addButton {
+            display: block;
+            width: 120px;
+            margin: 20px auto;
+            background: #0af;
+            padding: 10px;
+            border-radius: 4px;
+            text-align: center;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .addButton a {
+            color: #000;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 16px;
+            display: block;
+        }
+
+        .addButton:hover {
+            background: #0095d9;
         }
 
         table {
@@ -80,18 +95,26 @@
             background: #1a1a1a;
         }
 
-        .delete-btn{
+        .delete-btn {
             background: red;
             border-radius: 4px;
             cursor: pointer;
             border: none;
+            padding: 6px 12px;
+            color: #fff;
         }
 
-        .edit-btn{
+        .edit-btn {
             background: #0af;
             border-radius: 4px;
             cursor: pointer;
             border: none;
+            padding: 6px 12px;
+            color: #000;
+        }
+
+        .edit-btn:hover {
+            background: #0095d9;
         }
     </style>
 </head>
@@ -107,7 +130,9 @@
     </header>
 
     <h1 style="text-align:center;">equipements</h1>
-    <button class='addButton'><a href="./create.php">add</a></button> 
+    <div class="addButton">
+        <a href="create.php">Add</a>
+    </div>
 
     <table>
         <thead>
