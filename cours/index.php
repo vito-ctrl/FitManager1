@@ -162,7 +162,10 @@
                 <td><?= $course['duration'] ?></td>
                 <td><?= $course['max_participants'] ?></td>
                 <td>
-                    <button class="delete-btn">delete</button>
+                    <form action="delete.php" method="POST" style="display:inline;">
+                        <input type="hidden" name="delete_id" value="<?= $course['id'] ?>">
+                        <button id="delete-btn" type="submit">Delete</button>
+                    </form>
                     <button class="edit-btn">edit</button>
                 </td>
             </tr>

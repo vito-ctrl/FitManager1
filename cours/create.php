@@ -18,12 +18,6 @@ if (isset($_POST['action']) && $_POST['action'] === 'add') {
         
         $stmt = $conn->query($sql);
         if($stmt === TRUE) echo "nice:)";
-        echo "name". $name;
-        echo "cate" .$category; 
-        echo "date". $date;
-        echo "time". $time;
-        echo "duration". $duration;
-        echo "max". $max_p;
     }
 ?>
 <!DOCTYPE html>
@@ -157,7 +151,7 @@ if (isset($_POST['action']) && $_POST['action'] === 'add') {
 <div class="form-container">
     <h1>Add Course</h1>
 
-    <form action="" method="POST">
+    <form action="index.php" method="POST">
         <input type="hidden" name="action" value="add">
 
         <label for="name">Name</label>
