@@ -116,6 +116,62 @@
         .edit-btn:hover {
             background: #0095d9;
         }
+
+          /* Modal Background */
+.modal {
+    display: none;  
+    position: fixed;
+    z-index: 9999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.7);
+}
+
+/* Modal Box */
+.modal-content {
+    background: #111;
+    color: #fff;
+    /* margin: 12% auto; */
+    padding: 25px;
+    width: 400px;
+    border-radius: 8px;
+    border: 1px solid #333;
+}
+
+/* Close Button */
+.close {
+    float: right;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+/* Modal Inputs */
+.modal-content input,
+.modal-content select {
+    width: 100%;
+    padding: 8px;
+    margin: 10px 0;
+    background: #222;
+    border: 1px solid #444;
+    color: #fff;
+    border-radius: 4px;
+}
+
+.modal-content button {
+    width: 100%;
+    padding: 10px;
+    background: #0af;
+    color: #000;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.modal-content button:hover {
+    background: #0095d9;
+}
     </style>
 </head>
 <body>
@@ -205,12 +261,16 @@
                     <option value="Average">Average</option>
                     <option value="To replace">To replace</option>
                 </select>
+
+                <button type="submit">Save</button>
             </form>
         </div>
     </div>
 
     <script>
         function openEditModal(id, name, type, quantity, status){
+            document.getElementById("editModal").style.display = "block";
+
             document.getElementById("edit_id").value = id;
             document.getElementById("edit_name").value = name;
             document.getElementById("type_edit").value = type;
@@ -221,7 +281,7 @@
         function closeEditModal(){
             document.getElementById("editModal").style.display = "none";
         }
-        
+
     </script>
         
 </body>

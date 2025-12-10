@@ -278,6 +278,7 @@
         </form>
     </div>
 </div>
+
 <script>
     function openEditModal(id, nom, category, course_date, course_time, duration, max_participants) {
         document.getElementById("editModal").style.display = "block";
