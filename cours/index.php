@@ -224,16 +224,16 @@
                         <button class="delete-btn" type="submit">Delete</button>
                     </form>
                     <button class="edit-btn"
-    onclick="openEditModal(
-        <?= $course['id'] ?>, 
-        '<?= $course['nom'] ?>', 
-        '<?= $course['category'] ?>',
-        '<?= $course['course_date'] ?>',
-        '<?= $course['course_time'] ?>',
-        <?= $course['duration'] ?>,
-        <?= $course['max_participants'] ?>
-    )">Edit</button>
-
+                        onclick="openEditModal(
+                            <?= $course['id'] ?>, 
+                            '<?= $course['nom'] ?>', 
+                            '<?= $course['category'] ?>',
+                            '<?= $course['course_date'] ?>',
+                            '<?= $course['course_time'] ?>',
+                            <?= $course['duration'] ?>,
+                            <?= $course['max_participants'] ?>)">
+                        Edit
+                    </button>
                 </td>
             </tr>
             <?php endforeach; ?>
@@ -248,53 +248,52 @@
         <h2>Edit Course</h2>
 
         <form action="edit.php" method="POST">
-    <input type="hidden" name="id" id="edit_id">
+            <input type="hidden" name="id" id="edit_id">
 
-    <label>Name:</label>
-    <input type="text" name="nom" id="edit_nom">
+            <label>Name:</label>
+            <input type="text" name="nom" id="edit_nom">
 
-    <label>Category:</label>
-    <select name="category" id="edit_category">
-        <option value="Yoga">Yoga</option>
-        <option value="Musculation">Musculation</option>
-        <option value="Cardio">Cardio</option>
-        <option value="CrossFit">CrossFit</option>
-        <option value="Pilates">Pilates</option>
-    </select>
+            <label>Category:</label>
+            <select name="category" id="edit_category">
+                <option value="Yoga">Yoga</option>
+                <option value="Musculation">Musculation</option>
+                <option value="Cardio">Cardio</option>
+                <option value="CrossFit">CrossFit</option>
+                <option value="Pilates">Pilates</option>
+            </select>
 
-    <label>Date:</label>
-    <input type="date" name="course_date" id="edit_course_date">
+            <label>Date:</label>
+            <input type="date" name="course_date" id="edit_course_date">
 
-    <label>Time:</label>
-    <input type="time" name="course_time" id="edit_course_time">
+            <label>Time:</label>
+            <input type="time" name="course_time" id="edit_course_time">
 
-    <label>Duration (minutes):</label>
-    <input type="number" name="duration" id="edit_duration">
+            <label>Duration (minutes):</label>
+            <input type="number" name="duration" id="edit_duration">
 
-    <label>Max Participants:</label>
-    <input type="number" name="max_participants" id="edit_max_participants">
+            <label>Max Participants:</label>
+            <input type="number" name="max_participants" id="edit_max_participants">
 
-    <button type="submit">Save</button>
-</form>
-
+            <button type="submit">Save</button>
+        </form>
     </div>
 </div>
 <script>
-function openEditModal(id, nom, category, course_date, course_time, duration, max_participants) {
-    document.getElementById("editModal").style.display = "block";
+    function openEditModal(id, nom, category, course_date, course_time, duration, max_participants) {
+        document.getElementById("editModal").style.display = "block";
 
-    document.getElementById("edit_id").value = id;
-    document.getElementById("edit_nom").value = nom;
-    document.getElementById("edit_category").value = category;
-    document.getElementById("edit_course_date").value = course_date;
-    document.getElementById("edit_course_time").value = course_time;
-    document.getElementById("edit_duration").value = duration;
-    document.getElementById("edit_max_participants").value = max_participants;
-}
+        document.getElementById("edit_id").value = id;
+        document.getElementById("edit_nom").value = nom;
+        document.getElementById("edit_category").value = category;
+        document.getElementById("edit_course_date").value = course_date;
+        document.getElementById("edit_course_time").value = course_time;
+        document.getElementById("edit_duration").value = duration;
+        document.getElementById("edit_max_participants").value = max_participants;
+    }
 
-function closeEditModal() {
-    document.getElementById("editModal").style.display = "none";
-}
+    function closeEditModal() {
+        document.getElementById("editModal").style.display = "none";
+    }
 
 </script>
 

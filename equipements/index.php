@@ -156,16 +156,73 @@
                 <td><?= $equipment['quantity'] ?></td>
                 <td><?= $equipment['status'] ?></td>
                 <td>
-                    <form action="delete.php" method="POST" style="display:inline">
-                        <input type="hidden" name="delete_id" value="<? $equipment['id'] ?>">
+                   <form action="./delete.php" method="POST" style="display:inline;">
+                        <input type="hidden" name="delete_id" value="<?= $equipment['id'] ?>">
                         <button class="delete-btn" type="submit">Delete</button>
                     </form>
-                    <button class='edit-btn'>edit</button>
+                    <button class='edit-btn'
+                        onclick="openEditModal(
+                            <?= $equipment['id']?>,
+                            '<?= $equipment['name']?>',
+                            '<?= $equipment['type']?>',
+                            <?= $equipment['quantity']?>,
+                            '<?= $equipment['status']?>'
+                        )"
+                    >edit</button>
                 </td>
             </tr>
             <?php endforeach; ?>
         </tbody>
     </table>
 
+    <div id="editModal" class="modal">
+        <div class="modal-content">
+            <span onclick="closeEditModal()" class="close">&times;</span>
+            <h2>Edit Equipment</h2>
+            <form action="edit.php" method="POST">
+                <input type="hidden" name="id" id="edit_id">
+                
+                <label>Name:</label>
+                <input type="text" name="name" id="edit_name">
+
+                <label>type:</label>
+                <select name="type" id="type_edit">
+                    <option value="Treadmill">Treadmill</option>
+                    <option value="Dumbbells">Dumbbells</option>
+                    <option value="Balls">Balls</option>
+                    <option value="Bicycle">Bicycle</option>
+                    <option value="Bench">Bench</option>
+                    <option value="Mat">Mat</option>
+                    <option value="Other">Other</option>
+                </select>
+
+                <label>Quantity:</label>
+                <input type="number" name="quantity" id="edit_quantity">
+
+                <label>status:</label>
+                <select name="status" id="edit_status">
+                    <option value="Good">Good</option>
+                    <option value="Average">Average</option>
+                    <option value="To replace">To replace</option>
+                </select>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function openEditModal(id, name, type, quantity, status){
+            document.getElementById("edit_id").value = id;
+            document.getElementById("edit_name").value = name;
+            document.getElementById("type_edit").value = type;
+            document.getElementById("edit_quantity").value = quantity;
+            document.getElementById("edit_status").value = status;
+        }
+
+        function closeEditModal(){
+            document.getElementById("editModal").style.display = "none";
+        }
+        
+    </script>
+        
 </body>
 </html>
