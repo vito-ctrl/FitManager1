@@ -118,6 +118,63 @@
         .edit-btn:hover {
             background: #0095d9;
         }
+
+        /* Modal Background */
+.modal {
+    display: none;  
+    position: fixed;
+    z-index: 9999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.7);
+}
+
+/* Modal Box */
+.modal-content {
+    background: #111;
+    color: #fff;
+    /* margin: 12% auto; */
+    padding: 25px;
+    width: 400px;
+    border-radius: 8px;
+    border: 1px solid #333;
+}
+
+/* Close Button */
+.close {
+    float: right;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+/* Modal Inputs */
+.modal-content input,
+.modal-content select {
+    width: 100%;
+    padding: 8px;
+    margin: 10px 0;
+    background: #222;
+    border: 1px solid #444;
+    color: #fff;
+    border-radius: 4px;
+}
+
+.modal-content button {
+    width: 100%;
+    padding: 10px;
+    background: #0af;
+    color: #000;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.modal-content button:hover {
+    background: #0095d9;
+}
+
     </style>
 </head>
 <body>
@@ -164,14 +221,83 @@
                 <td>
                     <form action="delete.php" method="POST" style="display:inline;">
                         <input type="hidden" name="delete_id" value="<?= $course['id'] ?>">
-                        <button id="delete-btn" type="submit">Delete</button>
+                        <button class="delete-btn" type="submit">Delete</button>
                     </form>
-                    <button class="edit-btn">edit</button>
+                    <button class="edit-btn"
+    onclick="openEditModal(
+        <?= $course['id'] ?>, 
+        '<?= $course['nom'] ?>', 
+        '<?= $course['category'] ?>',
+        '<?= $course['course_date'] ?>',
+        '<?= $course['course_time'] ?>',
+        <?= $course['duration'] ?>,
+        <?= $course['max_participants'] ?>
+    )">Edit</button>
+
                 </td>
             </tr>
             <?php endforeach; ?>
         </tbody>
     </table>
+
+    <!-- POPUP MODAL -->
+<div id="editModal" class="modal">
+    <div class="modal-content">
+        <span onclick="closeEditModal()" class="close">&times;</span>
+
+        <h2>Edit Course</h2>
+
+        <form action="edit.php" method="POST">
+    <input type="hidden" name="id" id="edit_id">
+
+    <label>Name:</label>
+    <input type="text" name="nom" id="edit_nom">
+
+    <label>Category:</label>
+    <select name="category" id="edit_category">
+        <option value="Yoga">Yoga</option>
+        <option value="Musculation">Musculation</option>
+        <option value="Cardio">Cardio</option>
+        <option value="CrossFit">CrossFit</option>
+        <option value="Pilates">Pilates</option>
+    </select>
+
+    <label>Date:</label>
+    <input type="date" name="course_date" id="edit_course_date">
+
+    <label>Time:</label>
+    <input type="time" name="course_time" id="edit_course_time">
+
+    <label>Duration (minutes):</label>
+    <input type="number" name="duration" id="edit_duration">
+
+    <label>Max Participants:</label>
+    <input type="number" name="max_participants" id="edit_max_participants">
+
+    <button type="submit">Save</button>
+</form>
+
+    </div>
+</div>
+<script>
+function openEditModal(id, nom, category, course_date, course_time, duration, max_participants) {
+    document.getElementById("editModal").style.display = "block";
+
+    document.getElementById("edit_id").value = id;
+    document.getElementById("edit_nom").value = nom;
+    document.getElementById("edit_category").value = category;
+    document.getElementById("edit_course_date").value = course_date;
+    document.getElementById("edit_course_time").value = course_time;
+    document.getElementById("edit_duration").value = duration;
+    document.getElementById("edit_max_participants").value = max_participants;
+}
+
+function closeEditModal() {
+    document.getElementById("editModal").style.display = "none";
+}
+
+</script>
+
 
 </body>
 </html>

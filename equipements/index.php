@@ -156,8 +156,10 @@
                 <td><?= $equipment['quantity'] ?></td>
                 <td><?= $equipment['status'] ?></td>
                 <td>
-                    <button class='delete-btn'>
-                        delete</button> 
+                    <form action="delete.php" method="POST" style="display:inline">
+                        <input type="hidden" name="delete_id" value="<? $equipment['id'] ?>">
+                        <button class="delete-btn" type="submit">Delete</button>
+                    </form>
                     <button class='edit-btn'>edit</button>
                 </td>
             </tr>
