@@ -1,25 +1,38 @@
 <?php
-    ini_set('display_errors', 1);
-    ini_set('display_startup_errors', 1);
-    error_reporting(E_ALL);
-    require '../config/db.php';
+require '../config/db.php';
 
 if (isset($_POST['action']) && $_POST['action'] === 'add') {
-        $name = $_POST['name'];
-        $category = $_POST['category'];
-        $date = $_POST['date'];
-        $time = $_POST['time'];
-        $duration = $_POST['duration'];
-        $max_p = $_POST['max_participants'];
-        
-        
-        $sql = "INSERT INTO courses (nom ,category, course_date, course_time, duration, max_participants)
-                VALUES ('$name', '$category', '$date', '$time', '$duration', '$max_p')";
-        
-        $stmt = $conn->query($sql);
-        if($stmt === TRUE) echo "nice:)";
+
+    $nom = $_POST['name'];
+    $category = $_POST['category'];
+    $date = $_POST['date'];
+    $time = $_POST['time'];
+    $duration = intval($_POST['duration']);
+    $max_p = intval($_POST['max_participants']);
+
+    $stmt = $conn->prepare("
+        INSERT INTO courses (nom, category, course_date, course_time, duration, max_participants)
+        VALUES (?, ?, ?, ?, ?, ?)
+    ");
+
+    $stmt->bind_param("ssssii", 
+        $nom, 
+        $category, 
+        $date, 
+        $time, 
+        $duration, 
+        $max_p
+    );
+
+    if ($stmt->execute()) {
+        header("Location: index.php?add=success");
+        exit;
+    } else {
+        echo "SQL ERROR: " . $stmt->error;
     }
+}
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
